@@ -36,7 +36,7 @@ public class SignupServiceImpl implements SignupService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Optional<UserInfo> resistUserInfo(SignupForm form) {
+	public Optional<UserInfo> registerUserInfo(SignupForm form) {
 		var userInfoExistedOpt = repository.findById(form.getLoginId());
 		if (userInfoExistedOpt.isPresent()) {
 			return Optional.empty();
@@ -45,9 +45,9 @@ public class SignupServiceImpl implements SignupService {
 		var userInfo = mapper.map(form, UserInfo.class);
 		var encodedPassword = passwordEncoder.encode(form.getPassword());
 		userInfo.setPassword(encodedPassword);
-		userInfo.setAuthority(AuthorityKind.ITEM_WATCHER.getAuthorityKind());
+		userInfo.setAuthority(AuthorityKind.ITEM_WATCHER.getCode());
 
 		return Optional.of(repository.save(userInfo));
 	}
-	
+
 }

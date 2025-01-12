@@ -89,12 +89,12 @@ public class LoginController {
         }
     }
 
-    @GetMapping(UrlConst.LINE)
-	public String index(Model model, @AuthenticationPrincipal final OAuth2User user,
-			@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
-		model.addAttribute("userName", user.getName());
-		model.addAttribute("clientName", authorizedClient.getClientRegistration().getClientName());
-		model.addAttribute("userAttributes", user.getAttributes());
-		return "index";
-	}
+    // @GetMapping(UrlConst.LINE)
+	// public String index(Model model, @AuthenticationPrincipal final OAuth2User user,
+	// 		@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
+	// 	model.addAttribute("userName", user.getName());
+	// 	model.addAttribute("clientName", authorizedClient.getClientRegistration().getClientName());
+	// 	model.addAttribute("userAttributes", user.getAttributes());
+	// 	return "index";
+	// }
 }

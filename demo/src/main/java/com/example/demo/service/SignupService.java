@@ -12,6 +12,6 @@ import com.example.demo.form.SignupForm;
 
 public interface SignupService {
 
-    public Optional<UserInfo> resistUserInfo(SignupForm form);
+    public Optional<UserInfo> registerUserInfo(SignupForm form);
 
 }

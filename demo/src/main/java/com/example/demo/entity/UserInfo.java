@@ -63,7 +63,7 @@ public class UserInfo {
 	 * @return ログイン失敗情報がリセットされたUserInfo
 	 */
 	public UserInfo resetLoginFailureInfo() {
-		return new UserInfo(loginId, password, 0, null, isDisabled, authority);
+	return new UserInfo(loginId, password, 0, null, isDisabled, authority);
 	}
 
 	/**

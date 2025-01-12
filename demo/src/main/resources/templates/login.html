@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <h2>ログイン画面</h2>
             <div class="alert alert-danger d-flex align-items-center" role="alert" th:if="${errorMsg != null}">
-                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:" width="20px" height="25px"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:" width="20px" height="25px"><use xlink:href="#exclamation-triangle-fill" /></svg>
                 <span th:text="${errorMsg}"></span>
             </div>
             <form th:action="@{/login}" method="post" th:object="${loginForm}">

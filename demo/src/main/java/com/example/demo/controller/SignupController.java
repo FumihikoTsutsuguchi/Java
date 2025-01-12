@@ -58,17 +58,11 @@ public class SignupController {
     @PostMapping(UrlConst.SIGNUP)
     public void signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
         if (bdResult.hasErrors()) {
-            // var message = AppUtil.getMessage(messageSource, MessageConst.FORM_ERROR);
-            // model.addAttribute("message", message);
-            // model.addAttribute("isError", true);
             editGuideMessage(model, MessageConst.FORM_ERROR, true);
             return;
         }
         var userInfoOpt = service.registerUserInfo(form);
         var signupMessage = judgeMessageKey(userInfoOpt);
-        // var messageId = AppUtil.getMessage(messageSource, signupMessage.getMessageId());
-        // model.addAttribute("message", messageId);
-        // model.addAttribute("isError", signupMessage.isError());
         editGuideMessage(model, signupMessage.getMessageId(), signupMessage.isError());
     }
 
