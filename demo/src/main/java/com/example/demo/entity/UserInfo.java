@@ -2,7 +2,13 @@ package com.example.demo.entity;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.constant.AuthorityKind;
+import com.example.demo.constant.UserStatusKind;
+import com.example.demo.entity.converter.UserAuthorityConverter;
+import com.example.demo.entity.converter.UserStatusConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -35,16 +41,18 @@ public class UserInfo {
 	@Column(name = "account_locked_time")
 	private LocalDateTime accountLockedTime;
 
-	/** 利用可能か(true:利用可能) */
+	/** ユーザー状態種別 */
 	@Column(name = "is_disabled")
-	private boolean isDisabled;
+	@Convert(converter = UserStatusConverter.class)
+	private UserStatusKind status;
+
+	/** ユーザー権限種別 */
+	@Convert(converter = UserAuthorityConverter.class)
+	private AuthorityKind authority;
 
 	/**
-	 * ユーザー権限
+	 * デフォルトコンストラクタ
 	 */
-	@Column
-	private String authority;
-
 	public UserInfo() {
 	}
 
@@ -54,7 +62,7 @@ public class UserInfo {
 	 * @return ログイン失敗回数がインクリメントされたUserInfo
 	 */
 	public UserInfo incrementLoginFailureCount() {
-		return new UserInfo(loginId, password, ++loginFailureCount, accountLockedTime, isDisabled, authority);
+		return new UserInfo(loginId, password, ++loginFailureCount, accountLockedTime, status, authority);
 	}
 
 	/**
@@ -63,7 +71,7 @@ public class UserInfo {
 	 * @return ログイン失敗情報がリセットされたUserInfo
 	 */
 	public UserInfo resetLoginFailureInfo() {
-	return new UserInfo(loginId, password, 0, null, isDisabled, authority);
+	return new UserInfo(loginId, password, 0, null, status, authority);
 	}
 
 	/**
@@ -72,7 +80,7 @@ public class UserInfo {
 	 * @return ログイン失敗階位数、アカウントロック日時が更新されたUserInfo
 	 */
 	public UserInfo updateAccountLocked() {
-		return new UserInfo(loginId, password, 0, LocalDateTime.now(), isDisabled, authority);
+		return new UserInfo(loginId, password, 0, LocalDateTime.now(), status, authority);
 	}
 
 

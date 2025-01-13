@@ -48,12 +48,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		var isAccountLocked = accountLockedTime != null
 				&& accountLockedTime.plusHours(lockingTime).isAfter(LocalDateTime.now());
 
-
         return User.withUsername(userInfo.getLoginId())
             .password(userInfo.getPassword())
-            // .roles("USER")
-			.authorities(userInfo.getAuthority())
-            .disabled(userInfo.isDisabled())
+			.authorities(userInfo.getAuthority().getCode())
+            .disabled(userInfo.getStatus().isDisabled())
             .accountLocked(isAccountLocked)
             .build();
     }
