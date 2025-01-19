@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     /**
      * ユーザー情報生成
      *
-     * @params username ログインID
+     * @params username ログインIDA
      * @throws UsernameNotFoundException
      *
      */

@@ -2,10 +2,9 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.constant.ExecuteResult;
+import com.example.demo.constant.UserDeleteResult;
 import com.example.demo.dto.UserListInfo;
 import com.example.demo.dto.UserSearchInfo;
-import com.example.demo.form.UserListForm;
 
 /**
  * ユーザー一覧画面Serviceクラス
@@ -38,6 +37,6 @@ public interface UserListService {
 	 * @param loginId ログインID
 	 * @return 実行結果(エラー有無)
 	 */
-	public ExecuteResult deleteUserInfoById(String loginId);
-	
+	public UserDeleteResult deleteUserInfoById(String loginId);
+
 }

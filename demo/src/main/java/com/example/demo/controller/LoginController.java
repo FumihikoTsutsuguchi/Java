@@ -1,11 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.context.MessageSource;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.constant.MessageConst;
 import com.example.demo.constant.UrlConst;
+import com.example.demo.constant.ViewNameConst;
 import com.example.demo.form.LoginForm;
 import com.example.demo.service.LoginService;
 import com.example.demo.util.AppUtil;
@@ -50,7 +47,7 @@ public class LoginController {
      */
     @GetMapping(UrlConst.LOGIN)
     public String view(Model model, LoginForm form) {
-        return "login";
+        return ViewNameConst.LOGIN;
     }
 
     /**
@@ -64,7 +61,7 @@ public class LoginController {
     public String viewWithError(Model model, LoginForm form) {
         var errorInfo = (Exception)session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
         model.addAttribute("errorMsg", errorInfo.getMessage());
-        return "login";
+        return ViewNameConst.LOGIN;
     }
 
     /**
@@ -85,7 +82,7 @@ public class LoginController {
         } else {
             var errorMsg = AppUtil.getMessage(messageSource, MessageConst.LOGIN_WRONG_INPUT);
             model.addAttribute("errorMsg", errorMsg);
-            return "login";
+            return ViewNameConst.LOGIN;
         }
     }
 

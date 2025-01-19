@@ -1,4 +1,8 @@
 @charset "UTF-8";
-.table-active {
-	background-color: #cce5ff; /* 選択行の背景色を設定 */
+
+.table {
+    --bs-table-bg: transparent;
+}
+.table-row-active {
+	background-color: #cce5ff !important; /* 選択行の背景色を設定 */
 }

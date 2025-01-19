@@ -1,26 +1,27 @@
-package com.example.demo.dto;
+package com.example.demo.form;
 
 import com.example.demo.constant.db.AuthorityKind;
 import com.example.demo.constant.db.UserStatusKind;
 
 import lombok.Data;
 
+
 /**
- * ユーザー一覧画面検索用DTOクラス
+ *
+ * ユーザー編集画面Formクラス
  *
  * @author ys-fj
  *
  */
 @Data
-public class UserSearchInfo {
-
-	/** ログインID */
-	private String loginId;
+public class UserEditForm {
+	
+    /** ログイン失敗状況をリセットするか(リセットするならtrue) */
+	private boolean resetsLoginFailure;
 
 	/** アカウント状態種別 */
 	private UserStatusKind userStatusKind;
 
 	/** ユーザー権限種別 */
 	private AuthorityKind authorityKind;
-
 }
